@@ -1,6 +1,108 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { PAYMENT_STEPS } from '../config/siteConfig';
+import React, { useState } from 'react';
+import { useApp } from '../context/AppContext';
+import { PAYMENT_STEPS } from '../config/siteConfig';
+import { sendTelegramMessage } from '../services/telegramService';
+
+type PaymentMethod = 'bKash' | 'Nagad' | 'Rocket';
+
+const METHOD_DETAILS: Record<
+  PaymentMethod,
+  { color: string; logo: string }
+> = {
+  bKash: { color: '#d1175f', logo: '/bkash.png' },
+  Nagad: { color: '#e8312a', logo: '/nagad.png' },
+  Rocket: { color: '#8b2a8e', logo: '/rocket.png' },
+};
+
+const QUICK_AMOUNTS = [50, 100, 200, 500, 1000, 2000];
+
+export const AddMoneyView: React.FC = () => {
+  const { navigateTo, user, showToast, addMoneyRequest, config } = useApp();
+
+  const [step, setStep] = useState<1 | 2>(1);
+  const [amountInput, setAmountInput] = useState<string>('100');
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>('bKash');
+  const [trxId, setTrxId] = useState<string>('');
+
+  const numAmount = parseFloat(amountInput) || 0;
+
+  const handleNextStep = () => {
+    if (!numAmount || numAmount < 10 || numAmount > 50000) {
+      showToast('১০ থেকে ৫০,০০০ টাকার মধ্যে দিন');
+      return;
+    }
+    setStep(2);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getMethodNumber = (m: PaymentMethod) => {
+    return config.phoneNumbers[m] || '01983003336';
+  };
+
+  const handleCopyNumber = () => {
+    const num = getMethodNumber(selectedMethod);
+    navigator.clipboard.writeText(num);
+    showToast(`নম্বর কপি হয়েছে: ${num}`);
+  };
+
+  const handleVerify = async () => {
+    const cleanTrx = trxId.trim();
+    if (cleanTrx.length < 5) {
+      showToast('সঠিক ট্রানজেকশন আইডি (TrxID) দিন');
+      return;
+    }
+
+    addMoneyRequest(numAmount, selectedMethod, cleanTrx);
+
+    try {
+      await sendTelegramMessage(
+        `নতুন পেমেন্ট রিকোয়েস্ট!\nপদ্ধতি: ${selectedMethod}\nটাকা: ${numAmount} BDT\nট্রানজেকশন আইডি: ${cleanTrx}`
+      );
+      showToast('পেমেন্ট রিকোয়েস্ট সফল এবং টেলিগ্রামে পাঠানো হয়েছে');
+    } catch (error) {
+      console.error('Failed to send Telegram notification:', error);
+    }
+  };
+
+  const activeColor = METHOD_DETAILS[selectedMethod].color;
+
+  return (
+    <div className="max-w-[480px] mx-auto px-3.5 pb-[130px] pt-4">
+      {/* Top Header */}
+      <div className="flex items-center gap-3 mb-3.5">
+        <button
+          type="button"
+          onClick={() => {
+            if (step === 2) setStep(1);
+            else navigateTo('dashboard', undefined, 'wallet');
+          }}
+          aria-label="Back"
+          className="w-10 h-10 rounded-xl bg-[#eaf1ff] text-[#0284c7] grid place-items-center cursor-pointer"
+        >
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2 rotate-180" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <h2 className="text-[20px] font-extrabold text-[#0f172a] m-0">
+          {step === 1 ? 'Add Money: টাকা যোগ করুন' : 'পেমেন্ট ভেরিফাই করুন'}
+        </h2>
+      </div>
+
+      {step === 1 ? (
+        <div className="step-1">
+          {/* Step 1 Content goes here */}
+        </div>
+      ) : (
+        <div className="step-2">
+          {/* Step 2 Content goes here */}
+        </div>
+      )}
+    </div>
+  );
+};
 
 type PaymentMethod = 'bKash' | 'Nagad' | 'Rocket';
 
