@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="ntGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded hex/circle background -->
+  <rect x="2" y="2" width="36" height="36" rx="11" fill="url(#ntGrad)" />
+  <!-- Diamond gem on top -->
+  <polygon points="20,7 26,13 20,18 14,13" fill="url(#goldGrad)" />
+  <!-- N T letters styling -->
+  <text x="20" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#ffffff" text-anchor="middle" letter-spacing="-1">NT</text>
+</svg>

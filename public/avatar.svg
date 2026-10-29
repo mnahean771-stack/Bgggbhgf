@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </radialGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="jacketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" />
+      <stop offset="50%" stop-color="#991b1b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <clipPath id="circleClip">
+      <circle cx="60" cy="60" r="58" />
+    </clipPath>
+  </defs>
+  
+  <g clip-path="url(#circleClip)">
+    <!-- Background circle -->
+    <rect width="120" height="120" fill="url(#bgGlow)" />
+    
+    <!-- Red glowing aura behind character -->
+    <circle cx="60" cy="55" r="44" fill="#ef4444" opacity="0.35" filter="blur(6px)" />
+    
+    <!-- Body / Jacket / Shoulders -->
+    <path d="M15 125 C 20 85, 40 78, 60 78 C 80 78, 100 85, 105 125 Z" fill="url(#jacketGrad)" />
+    <!-- Inner Hoodie / Shirt Collar -->
+    <path d="M42 82 L60 102 L78 82 L72 78 L60 92 L48 78 Z" fill="#18181b" />
+    <path d="M52 88 L60 98 L68 88" stroke="#ef4444" stroke-width="2" fill="none" />
+    <path d="M30 92 L44 125" stroke="#000" stroke-width="2" opacity="0.4" />
+    <path d="M90 92 L76 125" stroke="#000" stroke-width="2" opacity="0.4" />
+
+    <!-- Neck -->
+    <path d="M50 64 L50 82 L70 82 L70 64 Z" fill="#ffd1b3" />
+    <path d="M50 72 Q60 82 70 72" fill="#f5af89" opacity="0.5" />
+
+    <!-- Face shape -->
+    <path d="M38 42 C 38 32, 82 32, 82 42 C 82 62, 72 74, 60 77 C 48 74, 38 62, 38 42 Z" fill="#ffe2cc" />
+
+    <!-- Ears -->
+    <ellipse cx="36" cy="48" rx="4" ry="7" fill="#ffd1b3" />
+    <ellipse cx="84" cy="48" rx="4" ry="7" fill="#ffd1b3" />
+
+    <!-- Anime Eyes -->
+    <!-- Left Eye -->
+    <path d="M44 47 Q 50 43 54 48" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    <ellipse cx="49" cy="51" rx="4" ry="4.5" fill="#dc2626" />
+    <circle cx="49" cy="51" r="2.2" fill="#000" />
+    <circle cx="51" cy="49" r="1.2" fill="#fff" />
+    
+    <!-- Right Eye -->
+    <path d="M66 48 Q 70 43 76 47" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    <ellipse cx="71" cy="51" rx="4" ry="4.5" fill="#dc2626" />
+    <circle cx="71" cy="51" r="2.2" fill="#000" />
+    <circle cx="69" cy="49" r="1.2" fill="#fff" />
+
+    <!-- Eyebrows -->
+    <path d="M42 43 Q 48 40 55 43" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none" />
+    <path d="M65 43 Q 72 40 78 43" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none" />
+
+    <!-- Nose & Mouth -->
+    <path d="M59 55 L60 57" stroke="#e09f7a" stroke-width="1.8" stroke-linecap="round" />
+    <path d="M54 64 Q 60 67 66 64" stroke="#c2410c" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+    <!-- Spiky Anime Hair (Black with highlights) -->
+    <path d="M28 42 
+             C 26 25, 45 10, 60 10 
+             C 75 10, 94 25, 92 42 
+             L 94 36 L 86 30 L 92 24 L 78 16 L 82 12 L 68 12 L 64 6 L 54 12 L 44 14 L 38 20 L 30 26 L 36 32 L 28 42 Z" 
+          fill="url(#hairGrad)" />
+    
+    <!-- Hair Bangs framing the face -->
+    <path d="M36 34 L 43 45 L 45 35 L 53 48 L 56 36 L 64 48 L 67 36 L 76 46 L 77 34 L 84 42 L 82 30" 
+          fill="url(#hairGrad)" />
+    
+    <!-- Red glowing hair streak / accent -->
+    <path d="M38 28 Q 50 16 66 18" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.8" />
+    <path d="M46 38 L 52 46" stroke="#ef4444" stroke-width="1.5" fill="none" opacity="0.6" />
+  </g>
+  
+  <!-- Outer border ring -->
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#e2e8f0" stroke-width="2" />
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "FF Gamecoin BD",
+  "description": "Free Fire top-up and gaming recharge platform for Bangladesh and international servers with instant bKash, Nagad, and Rocket support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
